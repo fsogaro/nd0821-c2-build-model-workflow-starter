@@ -35,6 +35,9 @@ def go(args):
         df = pd.read_csv(local_path)
 
         logging.info("preprocessing steps for data cleaning")
+        idx = df['longitude'].between(-74.25, -73.50) & df['latitude'].between(
+            40.5, 41.2)
+        df = df[idx].copy().reset_index(drop=True)
         df = df.drop_duplicates().reset_index(drop=True)
         df = df.dropna().reset_index(drop=True)
         idx = df['price'].between(args.min_price, args.max_price)
