@@ -1,0 +1,39 @@
+name: basic_cleaning
+conda_env: conda.yml
+
+entry_points:
+  main:
+    parameters:
+
+      input_artifact:
+        description: input artifact name
+        type: string
+
+      output_artifact:
+        description: output artifact name
+        type: string
+        default: clean_sample.csv
+
+      output_type:
+        description: type of the output artifact
+        type: string
+        default: clean_sample
+
+      output_description:
+        description: description of the output artifact
+        type: string
+        default: Data with outliers and null values removed
+
+      min_price:
+        description: min valid price
+        type: float
+        default: 0
+
+      max_price:
+        description: max valid price
+        type: float
+        default: 999999
+
+
+    command: >-
+        python run.py  --input_artifact {input_artifact}  --output_artifact {output_artifact}  --output_type {output_type}  --output_description {output_description}  --min_price {min_price}  --max_price {max_price} 
